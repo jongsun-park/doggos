@@ -7,8 +7,10 @@ import styled from "styled-components";
 import { colors } from "../../utils/styles";
 
 const InstagramFeed = () => {
-  const token =
-    "IGQVJVUUR3U3NCYjd0aDgxNzVxSUpLU296ZAFNYRl9zY2hnd3RMaEN3QjVSM2hma1RxRktSV2ZASWW1IczduM1FLMzFmWWNjVGdWdUptVDZA4eFpwMmRjTkEtS29vc2swbFBIQzdpdU1hOGMxMkc3WlpWWAZDZD";
+  const token = process.env.REACT_APP_INSTAGRAM_ACCESS_TOKEN;
+
+  console.log(token);
+
   const [num, setNum] = useState(6);
   const loadMore = (e) => {
     e.preventDefault();
