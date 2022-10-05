@@ -9,7 +9,7 @@ import { colors } from "../../utils/styles";
 const InstagramFeed = () => {
   const token = process.env.REACT_APP_INSTAGRAM_ACCESS_TOKEN;
 
-  console.log(token);
+  // console.log(token);
 
   const [num, setNum] = useState(6);
   const loadMore = (e) => {
