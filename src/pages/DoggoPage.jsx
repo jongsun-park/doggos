@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { doggos } from "../data/doggos";
 import InstagramFeed from "../components/section/InstagramFeed";
-import Slider from "react-slick";
 
 const getDoggos = () => {};
 
@@ -26,25 +25,73 @@ export const importAll = (r) => {
   return images;
 };
 
-const DogoSlide = ({ images }) => {
-  const settings = {
-    className: "slider variable-width",
-    dots: true,
-    infinite: true,
-    centerMode: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    variableWidth: true,
-  };
+const DogoGrid = ({ images }) => {
   return (
-    <Slider {...settings}>
+    <DogoGridContainer className="dogo-grid">
       {images &&
-        images.map((img, index) => (
-          <img key={`${img.name}${index}`} src={img.src} alt={img.name} />
+        images.slice(0, 6).map((img, index) => (
+          <div
+            key={`${img.name}${index}`}
+            className={`grid-container grid${(index % 6) + 1}`}
+          >
+            <div
+              className="grid-img"
+              style={{ backgroundImage: `url(${img.src})` }}
+            ></div>
+          </div>
         ))}
-    </Slider>
+    </DogoGridContainer>
   );
 };
+
+const DogoGridContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 960px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+
+  .grid-container {
+    overflow: hidden;
+
+    .grid-img {
+      min-height: clamp(300px, 50vw, 600px);
+      background-size: cover;
+      background-position: center center;
+      transition: all ease-out 300ms;
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .grid1 {
+    grid-area: 1 / 1 / 3 / 3;
+  }
+  .grid2 {
+    grid-area: 1 / 3 / 2 / 4;
+  }
+  .grid3 {
+    grid-area: 2 / 3 / 3 / 4;
+  }
+  .grid4 {
+    grid-area: 3 / 2 / 5 / 4;
+  }
+  .grid5 {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+  .grid6 {
+    grid-area: 4 / 1 / 5 / 2;
+  }
+`;
 
 const DoggoPage = () => {
   const { doggoId } = useParams();
@@ -69,7 +116,7 @@ const DoggoPage = () => {
         <p className="doggo-description__description">{description}</p>
         <p className="doggo-description__full-description">{fullDescription}</p>
       </div>
-      <DogoSlide images={images} />
+      <DogoGrid images={images} />
       <InstagramFeed />
     </DoggoPageContainer>
   );
