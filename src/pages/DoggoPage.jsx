@@ -19,7 +19,7 @@ export async function loader({ params }) {
 
 export const importAll = (r) => {
   let images = [];
-  r.keys().forEach((item, index) => {
+  r.keys().forEach((item) => {
     images.push({ name: item.split("./")[1].split(".")[0], src: r(item) });
   });
   return images;
@@ -98,17 +98,31 @@ const DoggoPage = () => {
   const doggo = doggos.filter((dog) => dog.name === doggoId)[0];
   const { name, breed, description, fullDescription, age, address } = doggo;
 
-  const images = importAll(
-    require.context(`../assets/images/jin`, false, /\.(png|jpe?g|svg)$/)
-  );
+  // Find all images
+  const raws = doggoId
+    ? importAll(
+        require.context(`../assets/images/doggos`, false, /\.(png|jpe?g|svg)$/)
+      )
+    : [];
 
-  console.log(images);
+  // Match images with name & Shuffle
+  const images = raws
+    .filter((doggo) => {
+      const index = doggo.name.indexOf(name);
+      return index === -1 ? false : true;
+    })
+    .sort(() => Math.random() - 0.5);
 
   return (
     <DoggoPageContainer>
-      <div className="doggo-banner">
-        <h2 className="doggo-banner__name">{name}</h2>
-        <p className="doggo-banner__breed">{breed}</p>
+      <div
+        className="doggo-banner"
+        style={{ backgroundImage: `url(${images[0].src})` }}
+      >
+        <div className="doggo-banner__backdrop">
+          <h2 className="doggo-banner__name">{name}</h2>
+          <p className="doggo-banner__breed">{breed}</p>
+        </div>
       </div>
       <div className="doggo-description">
         <p className="doggo-description__age">Age: {age} yeas old</p>
@@ -126,13 +140,26 @@ const DoggoPageContainer = styled.div`
   .doggo-banner {
     margin: 0 1rem;
     background: #eee;
-    padding: 1rem 2rem;
+    background-position: center;
+    overflow: hidden;
     border-radius: 1rem;
+
     &__name {
       margin-top: 1rem;
       text-transform: uppercase;
     }
+
     &__breed {
+    }
+
+    &__backdrop {
+      padding: 1rem 2rem;
+      background: #00000088;
+      transition: all ease-out 100ms;
+      &:hover {
+        background: #000000aa;
+      }
+      color: white;
     }
   }
   .doggo-description {

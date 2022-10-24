@@ -18,9 +18,7 @@ const RandomDogProfile = () => {
 
   return (
     <ProfileContainer onClick={updateDoggo}>
-      <div className="img" style={{ backgroundImage: `url(${profile})` }}>
-        Dogo
-      </div>
+      <div className="img" style={{ backgroundImage: `url(${profile})` }}></div>
     </ProfileContainer>
   );
 };
@@ -35,8 +33,8 @@ const fadeIn = keyframes`
 `;
 
 const ProfileContainer = styled.div`
-  min-width: 300px;
-  max-width: 300px;
+  min-width: 240px;
+  max-width: 240px;
   overflow: hidden;
   border-radius: 50%;
   margin-bottom: 1rem;

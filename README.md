@@ -19,3 +19,7 @@
 [Instagram Feed Library](https://github.com/MohammedRaji/react-ig-feed#readme)
 
 [Monitor screen size](https://www.positronx.io/react-get-dynamic-window-height-width-using-react-hooks/)
+
+[Faker API](https://fakerjs.dev/api/)
+
+[Animated Background](https://animatedbackgrounds.me/#modal15)
