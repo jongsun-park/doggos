@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 import DoggoPage from "./pages/DoggoPage";
 import ContactPage from "./pages/ContactPage";
 import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "doggos/:doggoId",
         element: <DoggoPage />,
+      },
+      {
+        path: "about",
+        element: <AboutPage />,
       },
       {
         path: "contact",

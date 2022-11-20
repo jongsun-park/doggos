@@ -35,17 +35,14 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
 
   .home-submit-banner {
     // border: 4px solid ${colors.gray[9]};
+    max-height: 95vh;
+    margin: auto;
 
     border-radius: 1rem;
     padding: 0 3rem;
     aspect-ratio: 16 / 9;
     // min-height: 400px;
     // max-height: 650px;
-
-    @media (max-width: ${bp.m}) {
-      aspect-ratio: 9 / 16;
-      padding: 0 1rem;
-    }
 
     position: relative;
     overflow: hidden;
@@ -69,9 +66,9 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
 
     &__title {
       margin: 0 0 1rem;
-      font-size: clamp(2rem, 8vw, 6rem);
+      font-size: 4rem;
       @media (max-width: ${bp.l}) {
-        font-size: clamp(2rem, 8vw, 2rem);
+        font-size: 3rem;
       }
     }
     &__description {
@@ -81,7 +78,7 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
       }
     }
     &__link {
-      margin-bottom: 1rem;
+      margin: 0 1rem 1rem 0;
       background: ${colors.gray[2]};
       padding: 8px 16px;
       border-radius: 4px;
@@ -104,6 +101,19 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
       @media (max-width: ${bp.m}) {
         left: -100%;
         top: 0;
+      }
+    }
+
+    @media (max-width: ${bp.m}) {
+      aspect-ratio: 9 / 16;
+      padding: 0 1rem;
+      &__title {
+        font-size: 3rem;
+        line-height: 1.1;
+        margin-bottom: 3rem;
+      }
+      &__description {
+        display: none;
       }
     }
   }

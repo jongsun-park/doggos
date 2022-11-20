@@ -1,95 +1,145 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Parallax, Pagination, Navigation } from "swiper";
+
+import "swiper/css";
+import "swiper/css/bundle";
+
 import { doggos } from "../../data/doggos";
-import placeholderImg from "../../assets/images/corgi.png";
+import bg from "../../assets/images/swiper-bg.jpg";
 
 const DoggoSlide = ({ doggo }) => {
-  const { name, breed, description, age, address, profile } = doggo;
+  const { name, breed, description, age, address } = doggo;
   return (
-    <SlideContainer
-      className="home-doggos-slide"
-      bg={profile || placeholderImg}
+    <DoggoSlideContainer
+      className="slide-container"
+      data-swiper-parallax-opacity="0.3"
     >
-      <Link to={`doggos/${name}`}>
-        <h2 className="home-doggos__name">{name}</h2>
+      <div className="title" data-swiper-parallax="-300">
+        {name.toUpperCase()}
+      </div>
+      <div className="subtitle" data-swiper-parallax="-200">
+        {breed} - {age} yrs - {address}
+      </div>
+      <div className="description" data-swiper-parallax="-100">
+        <p>{description}</p>
+      </div>
+      <Link
+        className="link"
+        data-swiper-parallax="-50"
+        to={`doggos/${doggo.name}`}
+      >
+        Learn more
       </Link>
-      <p className="home-doggos__spec">
-        {breed} / {age} years old / {address}
-      </p>
-      <p className="home-doggos__description">{description}</p>
-
-      <Link to={`doggos/${name}`} className="home-doggos__link">
-        Learn more about <span className="home-doggos__link__name">{name}</span>
-      </Link>
-    </SlideContainer>
+    </DoggoSlideContainer>
   );
 };
 
-const SlideContainer = styled.div`
-  ${(props) => css`
-    background-image: url(${props.bg});
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right;
-  `}
-  .home-doggos__name {
-    font-size: 2rem;
-    text-transform: uppercase;
-    margin: 0;
+const DoggoSlideContainer = styled.div`
+  .title {
+    font-size: 4rem;
+    margin: 1.4rem 0;
   }
-  .home-doggos__spec {
+  .subtitle {
+    font-weight: bold;
+    margin-bottom: 1.4rem;
   }
-  .home-doggos__description {
-    max-width: 70%;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  .description {
+    margin-bottom: 3rem;
+    max-width: 50ch;
   }
-  .home-doggos__link {
-    background: #333;
+  .link {
+    padding: 10px 20px;
+    background: black;
     color: white;
-    padding: 8px 16px;
-    line-height: 1;
-    border-radius: 4px;
-    display: inline-flex;
+    border-radius: 5px;
+    transition: all ease-out 200ms;
 
-    &__name {
-      margin-left: 6px;
-      text-transform: capitalize;
+    &:hover {
+      background: white;
+      color: black;
     }
   }
 `;
 
 const DoggosCarousel = () => {
-  const settings = {
-    fade: true,
-    infinite: true,
-    dots: true,
-    arrows: false,
-    speed: 3000,
-    autoplay: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
   return (
-    <SliderContainer className="home-doggos-carousel">
-      <Slider {...settings}>
-        {doggos.map((doggo) => (
-          <DoggoSlide key={doggo.name} doggo={doggo} />
-        ))}
-      </Slider>
-    </SliderContainer>
+    <SwiperContainer>
+      <Swiper
+        style={{
+          "--swiper-navigation-color": "#fff",
+          "--swiper-pagination-color": "#fff",
+        }}
+        speed={600}
+        parallax={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Parallax, Pagination, Navigation]}
+        className="doggo-swiper"
+        // onSlideChange={() => console.log("slide change")}
+        // onSwiper={(swiper) => console.log(swiper)}
+      >
+        {/* BG */}
+        <div
+          slot="container-start"
+          className="parallax-bg"
+          style={{
+            backgroundImage: `url(${bg})`,
+          }}
+          data-swiper-parallax="-23%"
+        ></div>
+
+        {/* Slides */}
+        {doggos.map((doggo, index) => {
+          // console.log(doggo.name);
+          const key = doggo.name || index;
+          return (
+            <SwiperSlide key={key}>
+              <DoggoSlide doggo={doggo} />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </SwiperContainer>
   );
 };
 
-const SliderContainer = styled.div`
-  margin-bottom: 2rem;
-  padding: 2rem 2rem 3rem;
+const SwiperContainer = styled.div`
+  .doggo-swiper {
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+    background: #000;
+  }
+
+  .swiper-slide {
+    font-size: 18px;
+    color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 40px 60px;
+    min-height: calc(
+      100vh - 10em
+    ); // TODO: Replcase 10em to exact size of header
+  }
+
+  .parallax-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130%;
+    height: 100%;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+  }
 `;
 
 export default DoggosCarousel;

@@ -49,3 +49,9 @@ a {
   text-decoration: none;
   color: initial;
 }
+
+/* Selection */
+::selection {
+  background-color: black;
+  color: white;
+}

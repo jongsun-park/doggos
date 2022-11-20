@@ -37,7 +37,7 @@ const DoggoIpsum = () => (
 );
 
 const DoggoIpsumContainer = styled(Container)`
-  bacgkround: ${colors.gray[0]};
+  // bacgkround: ${colors.gray[0]};
   padding-bottom: 4rem;
 
   .doggo-ipsum__title {
@@ -47,21 +47,26 @@ const DoggoIpsumContainer = styled(Container)`
     -webkit-text-stroke: 2px ${colors.gray[9]};
     margin: 1rem 0;
     letter-spacing: 2px;
+    transition: all ease-out 200ms;
+
+    &:hover {
+      letter-spacing: 10px;
+    }
   }
 
   // Small devices (landscape phones, 576px and up)
   @media (min-width: ${bp.s}) {
-    background: ${colors.gray[2]};
+    // background: ${colors.gray[2]};
   }
 
   // Medium devices (tablets, 768px and up)
   @media (min-width: ${bp.m}) {
-    background: ${colors.gray[4]};
+    // background: ${colors.gray[4]};
   }
 
   // Large devices (desktops, 992px and up)
   @media (min-width: ${bp.l}) {
-    background: ${colors.gray[6]};
+    // background: ${colors.gray[6]};
     .doggo-ipsum__content {
       column-count: 2;
       column-gap: 2rem;
@@ -71,14 +76,14 @@ const DoggoIpsumContainer = styled(Container)`
   // Extra large devices (large desktops, 1200px and up)
   @media (min-width: ${bp.xl}) {
     .doggo-ipsum__title {
-      -webkit-text-stroke-color: ${colors.gray[0]};
+      // -webkit-text-stroke-color: ${colors.gray[0]};
     }
     .doggo-ipsum__content {
       column-count: 3;
       column-gap: 2rem;
     }
-    background: ${colors.gray[9]};
-    color: ${colors.gray[4]};
+    // background: ${colors.gray[9]};
+    // color: ${colors.gray[4]};
   }
 `;
 

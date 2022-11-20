@@ -19,4 +19,5 @@ export const colors = {
     "#343a40",
     "#212529", // 900
   ],
+  green: "#2b8a3e",
 };
