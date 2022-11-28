@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../utils/styles";
 
 const DoggosTable = ({ data }) => {
   if (data.length === 0)
@@ -25,7 +26,9 @@ const DoggosTable = ({ data }) => {
                 <td className="name">{name}</td>
                 <td className="breed">{breed}</td>
                 <td className="birth">{birth}</td>
-                <td className="color">{color}</td>
+                <td className="color" style={{ backgroundColor: color }}>
+                  {color}
+                </td>
               </tr>
             );
           })}
@@ -42,23 +45,26 @@ const TableContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  table {
-    width: 100%;
-  }
-
   //   border
   table,
   th,
   td {
-    border: 1px solid #eee;
+    border: 1px solid ${colors.gray[9]};
     padding: 4px 8px;
     border-collapse: collapse;
+  }
+
+  table {
+    width: 100%;
+    border: 2px solid ${colors.gray[9]};
+    background: ${colors.gray[0]};
+    font-size: 14px;
   }
 
   th {
     text-align: center;
     text-transform: uppercase;
-    background-color: #eee;
+    background-color: ${colors.gray[6]};
   }
 
   td {
@@ -69,7 +75,7 @@ const TableContainer = styled.div`
 
   tbody {
     tr:nth-child(even) {
-      background: #ffffff44;
+      background: ${colors.gray[2]};
     }
   }
 `;

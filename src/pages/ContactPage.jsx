@@ -34,10 +34,17 @@ const ContactPage = () => {
     setDoggoData((prev) => ({ ...prev, [target.name]: target.value }));
   };
 
-  const getFakeDoggo = () => {
+  const getFakeDoggo = (e) => {
+    e.preventDefault();
+
     const name = faker.name.fullName();
     const breed = faker.animal.dog();
-    const date = new Date().toISOString().split("T")[0];
+    // const date = new Date().toISOString().split("T")[0];
+    const date = faker.date
+      .between("2000-01-01T00:00:00.000Z", "2022-12-23T00:00:00.000Z")
+      .toISOString()
+      .split("T")[0];
+
     const color = faker.color.rgb({ prefix: "#" });
 
     const randomDoggo = {
@@ -56,8 +63,9 @@ const ContactPage = () => {
         <GradientText
           text="Submit your doggos"
           styles={{
-            fontSize: "4em",
-            margin: "0 0 3rem",
+            fontSize: "2rem",
+            margin: "0 0 2rem",
+            fontWeight: "bold",
             textShadow: "0 4px 12px rgb(0 0 0 / 5%)",
           }}
           gradient="0deg, #283618 0%, #bc6c25 100%"
@@ -80,7 +88,7 @@ const ContactPage = () => {
 
 const Container = styled.div`
   max-width: 960px;
-  margin: 2rem auto;
+  margin: 0rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;

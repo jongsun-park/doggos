@@ -21,7 +21,7 @@ const SubmitYourDoggoBanner = () => {
             heckin angery woofer.{" "}
           </p>
           <Link to="contact" className="home-submit-banner__link">
-            Tell us more about your Doggo
+            <span>Tell us more about your Doggo</span>
           </Link>
           <div className="home-submit-banner__filter"></div>
         </div>
@@ -90,14 +90,42 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
     }
     &__link {
       margin: 0 1rem 1rem 1rem;
-      background: ${colors.gray[2]};
+      background: ${colors.gray[0]};
       padding: 8px 16px;
+      border: 2px solid ${colors.gray[9]};
       border-radius: 4px;
       transition: all ease-out 300ms;
+      position: relative;
+
+      span {
+        z-index: 10;
+        display: inline-block;
+      }
+
+      &::after {
+        transition: all ease-out 100ms;
+        content: "Let Submit Your Doggo";
+
+        width: 0%;
+        height: 100%;
+        position: absolute;
+        background-color: ${colors.gray[9]};
+        color: white;
+        left: 0;
+        top: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 2.4;
+      }
 
       &:hover {
-        background: ${colors.gray[9]};
-        color: ${colors.gray[0]};
+        // background: ${colors.gray[9]};
+        // color: ${colors.gray[0]};
+
+        &::after {
+          width: 100%;
+          padding: 0 20px;
+        }
       }
     }
     &__bg {
