@@ -44,7 +44,7 @@ const EmailForm = ({ serviceId, templateId, publicId }) => {
         type="text"
         name="user_name"
         id="user_name"
-        autofocus
+        autoFocus
         ref={nameEl}
         required
       />
@@ -52,12 +52,12 @@ const EmailForm = ({ serviceId, templateId, publicId }) => {
       <input type="email" name="user_email" id="user_email" required />
       <label htmlFor="contact_type">Contact Type</label>
       <div className="contact_type">
-        <input type="radio" id="work" name="type" value="work" checked />
-        <label for="work">Work with Me</label>
+        <input type="radio" id="work" name="type" value="work" />
+        <label htmlFor="work">Work with Me</label>
         <input type="radio" id="club" name="type" value="club" />
-        <label for="club">Join the Club</label>
+        <label htmlFor="club">Join the Club</label>
         <input type="radio" id="chat" name="type" value="chat" />
-        <label for="chat">Just Chat</label>
+        <label htmlFor="chat">Just Chat</label>
       </div>
 
       <label htmlFor="message">Message</label>
@@ -65,7 +65,7 @@ const EmailForm = ({ serviceId, templateId, publicId }) => {
 
       <div>
         <input type="checkbox" id="agree" name="agree" required />
-        <label for="agree">
+        <label htmlFor="agree">
           I agree to the term of <ins title="dummy link">Doggos Agreement</ins>
         </label>
       </div>

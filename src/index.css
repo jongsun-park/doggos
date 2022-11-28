@@ -55,3 +55,8 @@ a {
   background-color: black;
   color: white;
 }
+
+/* Form */
+label {
+  cursor: pointer;
+}

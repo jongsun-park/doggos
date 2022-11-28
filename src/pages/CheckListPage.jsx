@@ -25,7 +25,7 @@ const CheckListPage = () => {
     const cachedChecked = localStorage.getItem("doggo-requirements-checked");
     if (cachedChecked) {
       setChecked(JSON.parse(cachedChecked));
-      console.log("Success to load cached checked list");
+      // console.log("Success to load cached checked list");
     }
   }, []);
 

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { colors } from "../../utils/styles";
 
 const StyledButton = (props) => {
   return <Button {...props}>{props.children}</Button>;
@@ -13,6 +14,7 @@ const Button = styled.button`
   border-radius: 4px;
   transition: all ease-out 200ms;
   cursor: pointer;
+  background-color: transparent;
 
   & + & {
     margin-left: 10px;
@@ -22,16 +24,16 @@ const Button = styled.button`
   ${(props) =>
     props.primary &&
     css`
-      background-color: #333;
-      border-color: #333;
-      color: white;
+      background-color: ${colors.gray[7]};
+      border-color: ${colors.gray[7]};
+      color: ${colors.gray[0]};
     `}
 
   // hover state
     &:hover {
-    background-color: #111;
-    border-color: #111 !important;
-    color: white;
+    background-color: ${colors.gray[9]};
+    border-color: ${colors.gray[9]};
+    color: ${colors.gray[0]};
   }
 `;
 

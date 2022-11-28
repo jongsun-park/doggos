@@ -11,6 +11,7 @@ import ContactPage from "./pages/ContactPage";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import CheckListPage from "./pages/CheckListPage";
+import Loader from "./components/ui/Loader";
 
 const router = createBrowserRouter([
   {
@@ -43,4 +44,4 @@ const router = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={router} />);
+root.render(<RouterProvider router={router} fallbackElement={<Loader />} />);

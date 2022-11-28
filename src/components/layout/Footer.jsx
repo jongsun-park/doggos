@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../utils/styles";
 import SocialLink from "../ui/SocialLink";
 
 const Footer = () => (
@@ -25,7 +26,8 @@ const Footer = () => (
 const FooterContainer = styled.footer`
   font-size: 0.8rem;
   padding: 1rem 1rem;
-  background: #eee;
+  background: ${colors.gray[1]};
+  color: ${colors.gray[9]};
 
   display: flex;
   justify-content: space-between;
