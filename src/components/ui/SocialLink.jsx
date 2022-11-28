@@ -15,7 +15,7 @@ const SocialLink = ({ link = "#", name = "" }) => {
   if (name === "linkedin") iconImage = linkedinIcon;
 
   return (
-    <LinkContainer href={link}>
+    <LinkContainer href={link} target="_blank" rel="nofollow">
       <img src={iconImage} alt={`${name}-icon`} />
     </LinkContainer>
   );

@@ -5,10 +5,19 @@ const Footer = () => (
   <FooterContainer>
     <div className="copyright">© 2022 Jongsun Park, All rights reserved.</div>
     <div className="footer-links">
-      <SocialLink name="facebook" link="" />
-      <SocialLink name="github" link="" />
-      <SocialLink name="instagram" link="" />
-      <SocialLink name="linkedin" link="" />
+      <SocialLink
+        name="facebook"
+        link="https://www.facebook.com/JongsunPark89"
+      />
+      <SocialLink name="github" link="https://github.com/jongsun-park" />
+      <SocialLink
+        name="instagram"
+        link="https://www.instagram.com/parpar.design/"
+      />
+      <SocialLink
+        name="linkedin"
+        link="https://www.linkedin.com/in/jongsun-park/"
+      />
     </div>
   </FooterContainer>
 );

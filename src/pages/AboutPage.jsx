@@ -4,6 +4,7 @@ import styled, { keyframes } from "styled-components";
 import Container from "../components/ui/Container";
 import { useState } from "react";
 import { colors } from "../utils/styles";
+import { useEffect } from "react";
 
 // Email JS
 // https://www.emailjs.com/docs/examples/reactjs/
@@ -11,6 +12,12 @@ import { colors } from "../utils/styles";
 const EmailForm = ({ serviceId, templateId, publicId }) => {
   const form = useRef();
   const [message, setMessage] = useState("");
+
+  // autofocus backup
+  const nameEl = useRef(null);
+  useEffect(() => {
+    nameEl.current.focus();
+  }, []);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -32,12 +39,37 @@ const EmailForm = ({ serviceId, templateId, publicId }) => {
     <form ref={form} onSubmit={sendEmail} className="email-me">
       <h2>Email Me</h2>
       {message && <p className="response-msg">{message}</p>}
-      <label>Name</label>
-      <input type="text" name="user_name" required />
-      <label>Email</label>
-      <input type="email" name="user_email" required />
-      <label>Message</label>
-      <textarea name="message" required />
+      <label htmlFor="user_name">Name</label>
+      <input
+        type="text"
+        name="user_name"
+        id="user_name"
+        autofocus
+        ref={nameEl}
+        required
+      />
+      <label htmlFor="user_email">Email</label>
+      <input type="email" name="user_email" id="user_email" required />
+      <label htmlFor="contact_type">Contact Type</label>
+      <div className="contact_type">
+        <input type="radio" id="work" name="type" value="work" checked />
+        <label for="work">Work with Me</label>
+        <input type="radio" id="club" name="type" value="club" />
+        <label for="club">Join the Club</label>
+        <input type="radio" id="chat" name="type" value="chat" />
+        <label for="chat">Just Chat</label>
+      </div>
+
+      <label htmlFor="message">Message</label>
+      <textarea name="message" id="message" required />
+
+      <div>
+        <input type="checkbox" id="agree" name="agree" required />
+        <label for="agree">
+          I agree to the term of <ins title="dummy link">Doggos Agreement</ins>
+        </label>
+      </div>
+
       <input type="submit" value="Send" className="submit" />
     </form>
   );
@@ -120,6 +152,20 @@ const AboutContainer = styled(Container)`
 
     input {
       margin-bottom: 1rem;
+      &[type="checkbox"],
+      &[type="radio"] {
+        filter: saturate(0);
+      }
+
+      &[type="checkbox"] + label,
+      &[type="radio"] + label {
+        margin-right: 1em;
+      }
+    }
+
+    #message {
+      margin-bottom: 1em;
+      min-height: 10em;
     }
 
     .submit {

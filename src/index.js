@@ -10,6 +10,7 @@ import DoggoPage from "./pages/DoggoPage";
 import ContactPage from "./pages/ContactPage";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
+import CheckListPage from "./pages/CheckListPage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <AboutPage />,
+      },
+      {
+        path: "checkList",
+        element: <CheckListPage />,
       },
       {
         path: "contact",

@@ -23,11 +23,3 @@
 [Faker API](https://fakerjs.dev/api/)
 
 [Animated Background](https://animatedbackgrounds.me/#modal15)
-
-<!-- TODO -->
-
-Redux -> Make images global variables
-
-Table -> Save in local storgage
-
-Cookie banners - it save data to localStorage

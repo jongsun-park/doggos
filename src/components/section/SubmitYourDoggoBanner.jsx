@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Container from "../ui/Container";
 import { colors, bp } from "../../utils/styles";
-import bannerBg from "../../assets/videos/home-submit-banner-bg-low.mp4";
+import bannerBg from "../../assets/videos/home-submit-banner-bg.mp4";
 
 const SubmitYourDoggoBanner = () => {
   return (
@@ -20,10 +20,10 @@ const SubmitYourDoggoBanner = () => {
             Shooberino many pats borkf extremely cuuuuuute, ur givin me a spook
             heckin angery woofer.{" "}
           </p>
-
           <Link to="contact" className="home-submit-banner__link">
             Tell us more about your Doggo
           </Link>
+          <div className="home-submit-banner__filter"></div>
         </div>
       </div>
     </SubmitYourDoggoBannerContainer>
@@ -38,8 +38,8 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
     max-height: 95vh;
     margin: auto;
 
-    border-radius: 1rem;
-    padding: 0 3rem;
+    border-radius: 4px;
+    // padding: 0 3rem;
     aspect-ratio: 16 / 9;
     // min-height: 400px;
     // max-height: 650px;
@@ -57,6 +57,7 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
     &__inner {
       color: ${colors.gray[0]};
       position: absolute;
+      width: 100%;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -64,21 +65,31 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
       justify-content: center;
     }
 
+    &__filter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: -1;
+    }
+
     &__title {
-      margin: 0 0 1rem;
+      margin: 0 0 1rem 1rem;
       font-size: 4rem;
       @media (max-width: ${bp.l}) {
         font-size: 3rem;
       }
     }
     &__description {
-      margin: 0 0 2rem;
+      margin: 0 0 2rem 1rem;
       max-width: 50ch;
       @media (max-width: ${bp.s}) {
       }
     }
     &__link {
-      margin: 0 1rem 1rem 0;
+      margin: 0 1rem 1rem 1rem;
       background: ${colors.gray[2]};
       padding: 8px 16px;
       border-radius: 4px;
@@ -99,14 +110,14 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
       z-index: -1;
 
       @media (max-width: ${bp.m}) {
-        left: -100%;
+        left: 0;
         top: 0;
       }
     }
 
     @media (max-width: ${bp.m}) {
-      aspect-ratio: 9 / 16;
-      padding: 0 1rem;
+      aspect-ratio: 9 / 9;
+      // padding: 0 1rem;
       &__title {
         font-size: 3rem;
         line-height: 1.1;
@@ -115,6 +126,10 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
       &__description {
         display: none;
       }
+    }
+
+    @media (max-width: ${bp.s}) {
+      aspect-ratio: 9 / 16;
     }
   }
 `;

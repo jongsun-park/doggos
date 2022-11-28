@@ -49,6 +49,9 @@ const LinkList = ({ doggos = [] }) => (
       <StyledNavLink to={`about`} text="About Me" />
     </li>
     <li>
+      <StyledNavLink to={`checkList`} text="Check List" />
+    </li>
+    <li>
       <StyledNavLink to={`contact`} text="Submit Your Doggo" />
     </li>
   </>
@@ -172,7 +175,7 @@ const HeaderContainer = styled.header`
     }
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 960px) {
     .nav-desktop {
       display: none;
     }
