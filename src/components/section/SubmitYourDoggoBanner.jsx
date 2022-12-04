@@ -107,12 +107,12 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
         content: "Let Submit Your Doggo";
 
         width: 0%;
-        height: 100%;
+        height: calc(100% + 2px);
         position: absolute;
         background-color: ${colors.gray[9]};
         color: white;
         left: 0;
-        top: 0;
+        top: -1px;
         white-space: nowrap;
         overflow: hidden;
         line-height: 2.4;
@@ -123,7 +123,7 @@ const SubmitYourDoggoBannerContainer = styled(Container)`
         // color: ${colors.gray[0]};
 
         &::after {
-          width: 100%;
+          width: calc(100% + 2px);
           padding: 0 20px;
         }
       }

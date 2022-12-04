@@ -19,9 +19,8 @@ const InstagramFeed = () => {
   };
 
   return (
-    <InstagramFeedConatiner>
+    <InstagramFeedConatiner className="instgram-feed">
       <h2 className="instgram-feed__title">
-        {" "}
         Follow{" "}
         <a
           href="https://www.instagram.com/jins.little.daddy/"

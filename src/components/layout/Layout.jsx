@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import { useLocation, useOutlet } from "react-router-dom";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 
 // Page Transition Effect
 // https://www.framer.com/docs/animate-presence/
@@ -17,6 +18,12 @@ const AnimatedOutlet = () => {
 
 const Layout = () => {
   const location = useLocation();
+
+  // Change location when page has changed
+  useEffect(() => {
+    // console.log("location changed");
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <>

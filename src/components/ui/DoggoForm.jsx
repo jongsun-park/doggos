@@ -1,8 +1,21 @@
 import styled from "styled-components";
+import { regex } from "../../utils/regex";
 import { colors } from "../../utils/styles";
 import StyledButton from "./StyledButton";
 
-const DoggoForm = ({ onSubmit, onChange, data, onReset, getFakeDoggo }) => (
+// REGEX
+// Private mPatternName As String = "^([A-Z][a-zA-Z]{1, 29})+$"
+// (1 character, followed by 1 to 29 characters)
+// (min length 2, max length 30)
+
+const DoggoForm = ({
+  onSubmit,
+  onChange,
+  data,
+  onReset,
+  getFakeDoggo,
+  deleteAllDoggo,
+}) => (
   <FormContainer className="doggo-form" onSubmit={onSubmit}>
     <div className="inputs">
       {/* Name */}
@@ -11,11 +24,14 @@ const DoggoForm = ({ onSubmit, onChange, data, onReset, getFakeDoggo }) => (
         <input
           type="text"
           name="name"
+          placeholder="Jin"
           value={data.name}
           onChange={onChange}
-          required
-          minlength="3"
-          maxlength="20"
+          pattern={regex.textAndSpace}
+          // required
+          title="Only Letter & Space"
+          minLength="2"
+          maxLength="30"
         />
       </label>
       {/* Bread */}
@@ -24,11 +40,14 @@ const DoggoForm = ({ onSubmit, onChange, data, onReset, getFakeDoggo }) => (
         <input
           type="text"
           name="breed"
+          placeholder="Korean Jindo"
           value={data.breed}
           onChange={onChange}
-          required
-          minlength="3"
-          maxlength="20"
+          pattern={regex.textAndSpace}
+          // required
+          minLength="2"
+          maxLength="30"
+          title=""
         />
       </label>
       {/* Birth */}
@@ -64,6 +83,8 @@ const DoggoForm = ({ onSubmit, onChange, data, onReset, getFakeDoggo }) => (
       <StyledButton type="reset" onClick={onReset}>
         Clear Doggo
       </StyledButton>
+      <StyledButton onClick={deleteAllDoggo}>Delete All Doggos</StyledButton>
+
       <StyledButton type="submit" primary>
         Add Doggo
       </StyledButton>
@@ -120,7 +141,9 @@ const FormContainer = styled.form`
   .buttons {
     text-align: left;
     button {
-      margin-bottom: 1em;
+      &:not(last-child) {
+        margin: 0 10px 10px 0;
+      }
     }
   }
 `;

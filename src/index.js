@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import "./index.css";
+import "./styles/index.css";
+import "./styles/print.css";
+
 // Root
 import Layout from "./components/layout/Layout";
 import ErrorPage from "./pages/ErrorPage";

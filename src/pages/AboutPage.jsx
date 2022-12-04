@@ -1,84 +1,32 @@
-import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
-import styled, { keyframes } from "styled-components";
+import React, { useState } from "react";
+
+import styled from "styled-components";
 import Container from "../components/ui/Container";
-import { useState } from "react";
-import { colors } from "../utils/styles";
-import { useEffect } from "react";
-
-// Email JS
-// https://www.emailjs.com/docs/examples/reactjs/
-
-const EmailForm = ({ serviceId, templateId, publicId }) => {
-  const form = useRef();
-  const [message, setMessage] = useState("");
-
-  // autofocus backup
-  const nameEl = useRef(null);
-  useEffect(() => {
-    nameEl.current.focus();
-  }, []);
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs.sendForm(serviceId, templateId, form.current, publicId).then(
-      (result) => {
-        console.log(result.text);
-        if (result.text === "OK") {
-          setMessage("Thanks you! I Will Get Back to You as Soon as Possible");
-        }
-      },
-      (error) => {
-        console.log(error.text);
-      }
-    );
-  };
-
-  return (
-    <form ref={form} onSubmit={sendEmail} className="email-me">
-      <h2>Email Me</h2>
-      {message && <p className="response-msg">{message}</p>}
-      <label htmlFor="user_name">Name</label>
-      <input
-        type="text"
-        name="user_name"
-        id="user_name"
-        autoFocus
-        ref={nameEl}
-        required
-      />
-      <label htmlFor="user_email">Email</label>
-      <input type="email" name="user_email" id="user_email" required />
-      <label htmlFor="contact_type">Contact Type</label>
-      <div className="contact_type">
-        <input type="radio" id="work" name="type" value="work" />
-        <label htmlFor="work">Work with Me</label>
-        <input type="radio" id="club" name="type" value="club" />
-        <label htmlFor="club">Join the Club</label>
-        <input type="radio" id="chat" name="type" value="chat" />
-        <label htmlFor="chat">Just Chat</label>
-      </div>
-
-      <label htmlFor="message">Message</label>
-      <textarea name="message" id="message" required />
-
-      <div>
-        <input type="checkbox" id="agree" name="agree" required />
-        <label htmlFor="agree">
-          I agree to the term of <ins title="dummy link">Doggos Agreement</ins>
-        </label>
-      </div>
-
-      <input type="submit" value="Send" className="submit" />
-    </form>
-  );
-};
+import EmailForm from "../components/section/EmailForm";
 
 const AboutPage = () => {
   const serviceId = process.env.REACT_APP_EMAIL_SERVICE_ID;
   const templateId = process.env.REACT_APP_EMAIL_TEMPLATE_ID;
   const publicId = process.env.REACT_APP_EMAIL_PUBLIC_KEY;
+
+  const initEmail = {
+    user_name: "",
+    user_email: "",
+    message: "",
+    agree: false,
+  };
+
+  const [email, setEmail] = useState(initEmail);
+
+  const resetEmail = () => setEmail(initEmail);
+
+  const onChangeEmail = (e) => {
+    console.log(email);
+    setEmail((prevEmail) => ({
+      ...prevEmail,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   return (
     <AboutContainer>
@@ -105,84 +53,18 @@ const AboutPage = () => {
         serviceId={serviceId}
         templateId={templateId}
         publicId={publicId}
+        email={email}
+        onChangeEmail={onChangeEmail}
+        reset={resetEmail}
       />
     </AboutContainer>
   );
 };
 
-const fade = keyframes`
-0% {
-  opacity: 0;
-  transform: translateY(40px);
-}
-100% {
-  opacity: 1;
-  transfrom: translateY(0);
-}
-`;
-
 const AboutContainer = styled(Container)`
   background: none;
   max-width: 800px;
   margin: 0 auto;
-
-  .email-me {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem 2rem;
-    border: 2px solid ${colors.gray[4]};
-    border-radius: 4px;
-    margin-bottom: 3rem;
-    // box-shadow: 0 1em 1em 1em #33333311;
-
-    h2 {
-      margin-top: 0rem;
-    }
-
-    .response-msg {
-      background: ${colors.green};
-      color: white;
-      padding: 8px 16px;
-      border-radius: 4px;
-      margin-top: 0;
-      animation-name: ${fade};
-      animation-duration: 200ms;
-      animation-fill-mode: forwards;
-    }
-
-    input {
-      margin-bottom: 1rem;
-      &[type="checkbox"],
-      &[type="radio"] {
-        filter: saturate(0);
-      }
-
-      &[type="checkbox"] + label,
-      &[type="radio"] + label {
-        margin-right: 1em;
-      }
-    }
-
-    #message {
-      margin-bottom: 1em;
-      min-height: 10em;
-    }
-
-    .submit {
-      margin-top: 2rem;
-      background: black;
-      color: white;
-      font-weight: bold;
-      border-radius: 4px;
-      padding: 4px 0;
-      cursor: pointer;
-      transition: all ease-out 100ms;
-
-      &:hover {
-        background: #322a2a;
-        border-color: #322a2a;
-      }
-    }
   }
 `;
 

@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const scrollToTop = () => {
+  window.scrollTo(0, 0);
+};
+
 const Logo = () => (
-  <Link to={"/"}>
+  <Link to={"/"} onClick={scrollToTop}>
     <LogoContainer>DOGGOS</LogoContainer>
   </Link>
 );

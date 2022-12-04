@@ -1,12 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { faker } from "@faker-js/faker";
+import { motion } from "framer-motion";
 
 import RandomDogProfile from "../components/section/RandomDogProfile";
 import DoggoForm from "../components/ui/DoggoForm";
 import DoggosTable from "../components/ui/DoggosTable";
 import GradientText from "../components/ui/GradientText";
 import AnimateBackground from "../components/ui/AnimateBackground";
+import { colors } from "../utils/styles";
 
 const ContactPage = () => {
   const [doggosData, setDoggosData] = useState([]);
@@ -20,14 +22,32 @@ const ContactPage = () => {
 
   const [doggoData, setDoggoData] = useState(initDoggo);
 
+  const [msg, setMsg] = useState("");
+
   const resetDoggo = () => {
+    setMsg("");
     setDoggoData(initDoggo);
   };
 
   const addDoggo = (e) => {
     e.preventDefault();
+    if (doggoData.name === "") {
+      setMsg("Please add doggo name");
+      return;
+    }
+    if (doggoData.breed === "") {
+      setMsg("Please add doggo breed");
+      return;
+    }
+
     setDoggosData((prev) => [doggoData, ...prev]);
     resetDoggo();
+  };
+
+  const deleteAllDoggo = (e) => {
+    e.preventDefault();
+    resetDoggo();
+    setDoggosData([]);
   };
 
   const changeDoggo = ({ target }) => {
@@ -71,14 +91,24 @@ const ContactPage = () => {
           gradient="0deg, #283618 0%, #bc6c25 100%"
         />
         <RandomDogProfile />
+        {msg && (
+          <motion.p
+            className="error-msg"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 30 }}
+            exit={{ opacity: 0 }}
+          >
+            {msg}
+          </motion.p>
+        )}
         <DoggoForm
           data={doggoData}
           onChange={changeDoggo}
           onSubmit={addDoggo}
           onReset={resetDoggo}
           getFakeDoggo={getFakeDoggo}
+          deleteAllDoggo={deleteAllDoggo}
         />
-
         <hr />
         <DoggosTable data={doggosData} />
       </Container>
@@ -88,10 +118,23 @@ const ContactPage = () => {
 
 const Container = styled.div`
   max-width: 960px;
+  min-height: 100vh;
   margin: 0rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .error-msg {
+    margin: 0;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid ${colors.red[8]};
+    margin-top: 1em;
+    width: calc(100% - 2em);
+    font-size: 14px;
+    color: ${colors.red[8]};
+    background: ${colors.red[2]};
+  }
 `;
 
 export default ContactPage;

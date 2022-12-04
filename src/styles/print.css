@@ -1,0 +1,50 @@
+/**
+ * Print stylesheet for https://park-doggos.netlify.app
+* @version         1.0
+* @lastmodified    04/12/2022
+*/
+
+/* To open “print view” in Google Chrome:
+With Google Chrome open, press F12 on your keyboard.
+The DevTools console (debugger) will open.
+Click on the menu at the top right.
+Open 'More Tools' -> 'Rendering'
+Scroll down to the bottom, until 'Emulate CSS media type'
+Change to 'print' */
+
+@media print {
+  header,
+  footer {
+    display: none !important;
+  }
+
+  main {
+    margin: 1em 0;
+  }
+
+  .swiper-slide {
+    background: #333 !important;
+  }
+
+  .home-submit-banner__inner {
+    background: #333 !important;
+  }
+
+  .instgram-feed {
+    display: none !important;
+  }
+
+  a {
+    text-decoration: underline !important;
+  }
+
+  * {
+    font-size: 14pt !important;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-size: 24pt !important;
+  }
+}
