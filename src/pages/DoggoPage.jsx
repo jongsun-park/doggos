@@ -37,6 +37,7 @@ const DogoGrid = ({ images }) => {
             <div
               className="grid-img"
               style={{ backgroundImage: `url(${img.src})` }}
+              title={img.name ? img.name : "Doggo Image"}
             ></div>
           </div>
         ))}
@@ -66,6 +67,7 @@ const DogoGridContainer = styled.div`
       transition: all ease-out 300ms;
       width: 100%;
       height: 100%;
+      cursor: pointer;
 
       &:hover {
         transform: scale(1.1);

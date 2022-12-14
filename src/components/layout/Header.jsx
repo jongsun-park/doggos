@@ -128,7 +128,7 @@ const HeaderContainer = styled.header`
     background: white;
     width: 100%;
     padding: 0 1em;
-    box-shadow: 0 0 2px 4px rgb(0 0 0 / 1%);
+    box-shadow: 0 0 1em 1.4em rgb(0 0 0 / 5%);
   }
 
   // desktop nav

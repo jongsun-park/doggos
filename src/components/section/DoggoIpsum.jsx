@@ -42,15 +42,30 @@ const DoggoIpsumContainer = styled(Container)`
 
   .doggo-ipsum__title {
     font-weight: bold;
-    color: transparent;
+    // color: transparent;
     font-size: 2.4rem;
-    -webkit-text-stroke: 2px ${colors.gray[9]};
+    -webkit-text-stroke: 0px ${colors.gray[9]};
     margin: 1rem 0;
-    letter-spacing: 2px;
+    // letter-spacing: 2px;
     transition: all ease-out 200ms;
 
-    &:hover {
-      letter-spacing: 10px;
+    display: inline-block;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "";
+      top: 100%;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: ${colors.gray[9]};
+      transition: all ease-in 200ms;
+    }
+
+    &:hover::after {
+      // letter-spacing: 1px;
+      width: 100%;
     }
   }
 

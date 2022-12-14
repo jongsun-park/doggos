@@ -156,8 +156,8 @@ const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   padding: 2rem 2rem;
-  border: 2px solid ${colors.gray[4]};
-  border-radius: 4px;
+  border: 4px solid ${colors.gray[4]};
+  border-radius: 1rem;
   margin-bottom: 3rem;
   // box-shadow: 0 1em 1em 1em #33333311;
 

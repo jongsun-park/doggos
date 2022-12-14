@@ -28,14 +28,20 @@ const RandomDogProfile = () => {
         <ProfileContainer
           onClick={updateDoggo}
           key="img"
-          initial={{ opacity: 0, y: 50, scale: 0.5 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 140, scale: 0 }}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.5 }}
         >
-          <div
+          <motion.div
             className="img"
-            style={{ backgroundImage: `url(${profile})` }}
-          ></div>
+            style={{
+              backgroundImage: `url(${profile})`,
+              backgroundSize: "cover",
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0.2 }}
+          ></motion.div>
         </ProfileContainer>
       )}
     </AnimatePresence>
@@ -65,14 +71,14 @@ const ProfileContainer = styled(motion.div)`
   // animation: 1s ${fadeIn} ease-out;
 
   &:hover {
-    box-shadow: 0rem 1rem 2rem rgb(0 0 0 / 20%);
+    // box-shadow: 0rem 1rem 2rem rgb(0 0 0 / 20%);
     transform: translateY(-20px);
   }
 
   .img {
     aspect-ratio: 1 / 1;
     background-size: cover;
-    transition: all ease-out 200ms;
+    transition: all ease-out 400ms;
 
     &:hover {
       // filter: grayscale(0.8);

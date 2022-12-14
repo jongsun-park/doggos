@@ -56,6 +56,8 @@ const DoggoSlideContainer = styled.div`
     color: white;
     border-radius: 5px;
     transition: all ease-out 200ms;
+    transition-duration: 200ms !important;
+    transition-timing-function: ease-in-out !important;
 
     &:hover {
       background: white;
